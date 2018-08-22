@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Joseph's Social Media</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+     <div id="navbar">
+       <ul>
+      <li><a href="/">Home</a></li>
+      <% if session[:user] == nil%>
+      <li><a href="/signup">Sign Up</a></li>
+      <li><a href="/login">Log In</a></li>
+      <% else %>
+      <li><a href="/account"><%=session[:user].firstname%></a></li>
+      <li><a href="/profile"><%=session[:user].firstname%>'s profile</a></li>
+      <li><a href="/setting">Setting</a></li>
+        <li><a href="/post">Post</a></li>
+      <li><a href="/logout">Log Out<a/></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="image1"><img src="images/barefoot.png"></div><br><h1>Barefoot<br>BackPackers</h1>
+</div>
+
+  <% flash.keys.each do |type| %>
+    <div data-alert class="flash <%= type %> alert-box radius">
+      <%= flash[type] %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
+
+
+  <%= yield %>
+
+
+  </body>
+</html>
